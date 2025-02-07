@@ -1,55 +1,27 @@
 import json
+import time
 
 from rich.console import Console
-from rich.live import Live
-from rich.spinner import Spinner
-from utils import clean_stdout, run_stats
+from ui import create_ui
+from utils import run_stats
 
 console = Console()
-stats = run_stats()
 
-first_iter = True
-wait_live = None  # Variável para armazenar o objeto Live quando em "wait"
-
-try:
-    for line in iter(stats.stdout.readline, ''):
-        if line == '\x1b[J\x1b[H\x1b[H\x1b[K\n':
-            if wait_live is None:
+while True:
+    try:
+        stats = run_stats()
+        lines = stats.stdout.split('\n')
+        with console.status('Waiting for Containers...'):
+            while len(lines) <= 1 and '' in lines:
                 console.clear()
-                wait_live = Live(
-                    Spinner(
-                        'dots', text='Wait for containers...', style='green'
-                    ),
-                    console=console,
-                    refresh_per_second=10,
-                )
-                wait_live.start()
-            else:
-                wait_live.update(
-                    Spinner(
-                        'dots', text='Wait for containers...', style='green'
-                    )
-                )
-        else:
-            if wait_live is not None:
-                wait_live.stop()
-                wait_live = None
-                console.clear()
+                time.sleep(1)
+                stats = run_stats()
+                lines = stats.stdout.split('\n')
 
-            clear_line = clean_stdout(line)
-            if clear_line:
-                dict_value = json.loads(clear_line)
-                nome = dict_value['Name']
-                cpu = dict_value['CPUPerc']
-                mem = dict_value['MemPerc']
+        lines = [json.loads(line) for line in lines if line]
+        ui = create_ui(lines)
+        ui.display()
+        time.sleep(0.5)
 
-                console.print(dict_value)
-
-except KeyboardInterrupt:
-    if wait_live is not None:
-        wait_live.stop()
-    console.print('\nInterrupt by user...')
-
-finally:
-    stats.terminate()
-    stats.wait()
+    except KeyboardInterrupt:
+        break
