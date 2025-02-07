@@ -17,8 +17,8 @@ def create_ui(data: List[dict]):
         current_widget = VSplit(  # ui.items[0]
             VSplit(
                 HSplit(
-                    HGauge(title=f'CPU {cpu_perc}', val=cpu_int, border_color=4),
-                    HGauge(title=f'RAM {mem_perc}', val=mem_int, border_color=4),
+                    HGauge(title=f'CPU {cpu_perc}', val=cpu_int, border_color=4, color=1 if cpu_int >=70 else 2),
+                    HGauge(title=f'RAM {mem_perc}', val=mem_int, border_color=4, color=1 if cpu_int >=70 else 2),
                 ),
                 HSplit(
                     Text(
