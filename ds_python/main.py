@@ -1,3 +1,5 @@
+import json
+
 from rich.console import Console
 from rich.live import Live
 from rich.spinner import Spinner
@@ -5,6 +7,8 @@ from utils import clean_stdout, run_stats
 
 console = Console()
 stats = run_stats()
+
+first_iter = True
 wait_live = None  # Variável para armazenar o objeto Live quando em "wait"
 
 try:
@@ -33,7 +37,13 @@ try:
                 console.clear()
 
             clear_line = clean_stdout(line)
-            console.print(clear_line)
+            if clear_line:
+                dict_value = json.loads(clear_line)
+                nome = dict_value['Name']
+                cpu = dict_value['CPUPerc']
+                mem = dict_value['MemPerc']
+
+                console.print(dict_value)
 
 except KeyboardInterrupt:
     if wait_live is not None:
