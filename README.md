@@ -1,4 +1,4 @@
-# 📊 `ds-python` - Estatisticas de containers em tempo real
+# 📊 `ds-python` - Estatísticas de containers em tempo real
 
 
 ### 📺 __Demo:__
