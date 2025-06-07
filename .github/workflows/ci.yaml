@@ -22,13 +22,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [ "Flatpak", "AppImage", "Ubuntu" ]
+        target: [ "Flatpak","Ubuntu" ]
         include:
-          - target: "AppImage"
-            platform: "linux"
-            output-format: "appimage"
-            runs-on: "ubuntu-latest"
-
           - target: "Flatpak"
             platform: "linux"
             output-format: "flatpak"
@@ -51,7 +46,9 @@ jobs:
 
       - name: Install flatpak
         if: matrix.target == 'Flatpak'
-        run: sudo apt install flatpak flatpak-builder
+        run: |
+          sudo apt update -y
+          sudo apt install flatpak flatpak-builder
 
       - name: Install Briefcase
         run: |
