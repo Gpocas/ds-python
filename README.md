@@ -38,6 +38,3 @@ uv run briefcase package
 sudo apt install dist/pacote.deb
 ```
 
-
-
-
