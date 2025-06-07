@@ -2,10 +2,12 @@ import json
 import time
 
 from rich.console import Console
+
 from ds_python.ui import create_ui
 from ds_python.utils import run_stats
 
 console = Console()
+
 
 def main():
     while True:
