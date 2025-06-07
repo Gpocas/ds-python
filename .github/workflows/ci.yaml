@@ -28,7 +28,7 @@ jobs:
             platform: "linux"
             output-format: "flatpak"
             runs-on: "ubuntu-latest"
-            pre-command: "sudo apt update && sudo apt -y install flatpak flatpak-builder"
+            pre-command: "sudo apt update -y && sudo apt -y install flatpak flatpak-builder"
             briefcase-run-prefix: "xvfb-run"
 
           - target: "Ubuntu"
