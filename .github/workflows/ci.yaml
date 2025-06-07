@@ -95,3 +95,5 @@ jobs:
           body_path: CHANGELOG
           files: |
             dist/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
