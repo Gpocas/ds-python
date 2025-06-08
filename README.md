@@ -14,8 +14,6 @@ Esse projeto é uma altenativa ao comando `docker stats` para o monitoramento de
 - rich - __loading__
 - briefcase - __package builder__
 
-
-
 ### 🪛 __Instalação:__
 
 #### Instalando o projeto:
@@ -35,6 +33,6 @@ uv run briefcase package
 ```
 #### Instalando o pacote (Ubuntu):
 ```bash
-sudo apt install dist/pacote.deb
+sudo apt install pacote.deb
 ```
 
