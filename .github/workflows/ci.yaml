@@ -22,7 +22,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [ "Flatpak","Ubuntu" ]
+        target: [ "Flatpak", "Ubuntu" ]
         include:
           - target: "Flatpak"
             platform: "linux"
