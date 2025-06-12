@@ -9,29 +9,50 @@ Esse projeto é uma altenativa ao comando `docker stats` para o monitoramento de
 
 
 ### 💻 __Stack:__
-- Python (3.10) - __runtime__
+- Python (3.12) - __runtime__
 - dashing - __charts__
 - rich - __loading__
 - briefcase - __package builder__
 
 ### 🪛 __Instalação:__
+Existem duas maneiras de instalação, nativa ou virtual
 
-#### Instalando o projeto:
+usando o __pipx__
+```bash
+pipx install ds-python
+```
+
+usando o __uv__
+```bash
+uv tool install ds-python
+```
+
+usando o __uvx__
+```bash
+uvx tool install ds-python
+```
+
+
+todos os exemplos acima envolvem a virtualização do projeto,
+caso queira se aventurar em uma instalação nativa siga os passos abaixo:
+#### 1. Clonando o projeto
 ```bash
 git clone https://github.com/gpocas/ds-python
 ```
 
-#### Instalando as dependencias:
+#### 2. Instalando as dependencias:
 ```bash
 cd ds-python
 uv sync
 ```
-#### Gerando o pacote:
+
+#### 3. Gerando o pacote:
 ```bash
 uv run briefcase build
 uv run briefcase package
 ```
-#### Instalando o pacote (Ubuntu):
+
+#### 4. Instalando o pacote (Ubuntu):
 ```bash
 sudo apt install pacote.deb
 ```
